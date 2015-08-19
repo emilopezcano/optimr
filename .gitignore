@@ -4,3 +4,5 @@
 optimr.Rproj
 Read-and-delete-me
 .Rbuildignore
+enrima.gms
+.gitignore
