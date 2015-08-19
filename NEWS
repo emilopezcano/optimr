@@ -1,0 +1,44 @@
+Version 0.0-8
+-------------
+* New methods for updating and deleting elements of an optimSMS object
+* New method for export parameter values of optimInstance objects to .xlsx file
+
+Version 0.0-7
+-------------
+* Not released
+
+Version 0.0-6
+-------------
+* Started for the stochastic model
+* Added multidimensional sets capability
+* Re-structure table sets for SMS
+* Allow equation break lines
+
+Version 0.0-5
+-------------
+* [trying to include complex equations (conditional sums)]
+* Domain definition for parameters and variables
+* Compact forms for LaTeX representation (without long descriptions)
+* New column dataCom for parameters
+* Fixed bug with nested equations (working with whole model)
+
+Version 0.0-4
+-------------
+* Subsets included
+* Translating prime symbols
+
+Version 0.0-3
+-------------
+* Object slots get functions
+* Object creation functions
+
+
+Version 0.0-2
+-------------
+* Some improvements
+
+Version 0.0-1
+-------------
+FEATURES
+
+* Initial version 0.0-1

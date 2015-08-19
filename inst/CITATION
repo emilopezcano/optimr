@@ -1,0 +1,14 @@
+citHeader("To cite optimr in publications use:")
+
+citEntry(entry = "Manual",
+  title        = "optimr: optimization framework",
+  author       = personList(as.person("Emilio L. Cano")),
+  year         = "2013",
+  url          = "http://www.proyectum.es",
+  note	       = paste("R package version", packageVersion("optimr")), 
+  textVersion  =
+  paste("Emilio L. Cano (2013).",
+        "optimr: optimization framework. R package version ",
+        packageVersion("optimr"),
+        "http://www.proyectum.es")
+)

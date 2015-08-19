@@ -1,0 +1,153 @@
+% 
+\documentclass[a4paper]{article}
+\usepackage{Sweave}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\title{optimr: An An Integrated Framework for Optimization}
+\author{Emilio L. Cano}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\section{Definitions}
+\begin{description}
+  \item[entity] An entity is a basic type items in an optimisation problem.
+  These main entities are: sets, variables, parameters and equations. Terms are
+  a special entity composed by a variable or parameter and further information
+  to compound an equation. Constants and Scalars are auxiliary entities for
+  modeling.
+  \item[item] An item is an specific instance of an entity. It is represented by
+  an id and a symbol, and can contain more information as descriptions, indices,
+  values or others.
+  \item [Set]
+  \item [Variable]
+  \item [Parameter]
+  \item [Equation]
+  \item [Term]
+  \item [Constant]
+  \item [Scalar]
+\end{description}
+
+\section{Optimization Workflow}
+First, an \texttt{optimSMS} object has to be created. At least a name
+(\texttt{name}) must be provided. Other available arguments are short
+description (\texttt{sDes}) and long description (\texttt{lDes}):
+
+<<eval=FALSE>>=
+library(optimr)
+mySMS <- newSMS("MyFirstSMS")
+@
+
+After its creation, besides the name and descriptions, it contains the data
+structures for each entity of the model: sets, variables, parameters, equations
+and terms (of equations).
+
+<<eval=FALSE>>=
+getClass("optimSMS")
+str(mySMS)
+@
+
+Now we can add items to each entity of the model. Before adding an indexed item,
+the corresponding set must have been created. Thus, it is better to add first
+the sets, then the variables and parameters, and finally the equations and
+terms.
+
+Let us add some sets:
+
+
+\section{Sets}
+
+data.frame columns:
+
+\begin{itemize}
+  \item [id] Unique identifier
+  \item [symbol] Unique symbol in the model
+  \item [tag] Unique `word' tag.
+  \item [sDes] One sentence description.
+  \item [lDes] One paragraph description.
+  \item [dataCom] Comment for data input/output
+  \item [loc] Location of the index in parameters and variables.
+  \item [setType] Possible values: `set', `alias', `subset', `multidim'.
+  \item [ordered] States if the set is ordered.
+  \item [inSet] If the set is an alias or a subset, then this column contains
+  the index of the related set.
+  \item [setDom] If the set is a multi-dimensional set, then this column
+  contains a vector with the indexes of the sets that define the dimensions.
+\end{itemize}
+
+
+\section{Variables and Parameters}
+
+The vector within the column \texttt{setInd}, indicates which sets are the
+domain of each index in the variable or parameter. It is not necessary if the domain is
+the whole set.
+
+The vector within the column \texttt{varType} contains a sequence of sets for
+the indices and data type for those domains.
+
+The vector within the comumn \texttt{domCond} contains equation/s id/s to
+constraint the sets.
+
+\section{Variables}
+
+\section{Parameters}
+
+
+
+\section{Equations}
+
+\subsection{Modified Indices}
+
+A term index can vary dynamically as a function of other indices or parameters.
+In this case, the term in the equation must include which (auxiliary) equation
+should substitute a given index.
+
+%Por ejemplo: s^{t-1} -> sustituir indice t por equaci�n t=t-1, o algo as� (ver)
+
+This equations are composed by the set to be substituted on the left side,
+and the substituting expression on the right side.
+
+When an index in a term of an equation must be substituted, we add a value for
+the variable \texttt{setSubEq} to the term data.frame.
+
+\subsection{Conditional sums}
+
+A sum over a term can be made over a whole set (or defined subset), or over a
+conditional statement over sets. Thus, the property \texttt{setSums} of a term
+indicates which sets are in the sum, while the property \texttt{condSums} of a
+term indicates which conditional equation should be added to the sum. This is
+usually used for equations of the type:
+
+\begin{align*}
+\sum_{i'<i} x_{i'}\; \forall i \in \mathcal{I}. 
+\end{align*}
+
+
+\section{Problem Instance}
+
+\subsection{Sets}
+The sets must be added in the same order than they are in the data.frame of the
+sms.
+
+\subsection{Parameter Values}
+
+The list must be in the same order than the indices were saved to the parameter
+in the SMS.
+
+\appendix
+\section{Optimization Services (OS)}
+Implemented the Optimization Services from COIN-OR:
+
+\url{http://www.coin-or.org}
+
+\url{https://projects.coin-or.org/OS}
+
+\url{http://www.optimizationservices.org/}
+
+\end{document}
